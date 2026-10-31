@@ -1,0 +1,191 @@
+# ==============================================================================
+# DISCORD BOT CONFIGURATION FILE (config.txt)
+# Location: /opt/discord-role-bot/config.txt
+# ==============================================================================
+
+[settings]
+
+# ------------------------------------------------------------------------------
+# DISCORD CORE SETTINGS
+# ------------------------------------------------------------------------------
+
+# bot_token:
+# The secret bot token generated in the Discord Developer Portal under Bot -> Token.
+# Required for the bot to authenticate and connect to the Discord Gateway.
+# Format: String (e.g., MTIzNDU2Nzg5MDEyMzQ1Njc4OQ.GaBcDe.fGhIjKlMnOpQrStUvWxYz)
+#bot_token = 
+
+# admin_channel_id:
+# The channel ID where administrative prefix commands (like !addstreamer, !postrules)
+# are permitted to run. If set, running admin commands in any other channel will auto-delete
+# the invocation and warn the user. Set to 0 to disable channel locking.
+# Format: Discord Snowflake ID (integer)
+#admin_channel_id = 0
+
+# announcement_channel_id:
+# The channel ID where the bot sends live alerts when a tracked streamer goes live on
+# Twitch, Kick, or YouTube.
+# Format: Discord Snowflake ID (integer)
+#announcement_channel_id = 0
+
+# rules_channel_id:
+# Default target channel where the !postrules command will output the server rules embed
+# if no channel mention is supplied as an argument.
+# Format: Discord Snowflake ID (integer)
+#rules_channel_id = 0
+
+# check_interval_seconds:
+# Number of seconds the background polling loop waits between scanning all streamers'
+# live status across Twitch, Kick, and YouTube.
+# Default: 90.0 (Floats allowed)
+#check_interval_seconds = 90.0
+
+
+# ------------------------------------------------------------------------------
+# REACTION ROLE & VERIFICATION WATCHERS
+# ------------------------------------------------------------------------------
+
+# verify_message_id:
+# The message ID of the server rules post. The bot listens for ✅ reactions added/removed
+# on this specific message to assign/strip the verified member role.
+# Automatically updated when running !postrules. Set to 0 if unused.
+# Format: Discord Snowflake ID (integer)
+#verify_message_id = 0
+
+# verified_role_id:
+# The role ID granted when a user reacts with ✅ on verify_message_id.
+# If left as 0, the bot attempts to find a role with the exact name "verified".
+# Format: Discord Snowflake ID (integer)
+#verified_role_id = 0
+
+# stream_picker_message_id:
+# The message ID of the notification role menu (🟣 Twitch, 🟢 Kick, 🔴 YouTube).
+# The bot monitors reaction adds/removals on this message to grant/remove viewer roles.
+# Set automatically by !postrolesmenu or manually via !setrolepicker <id>.
+# Format: Discord Snowflake ID (integer)
+#stream_picker_message_id = 0
+
+# game_picker_message_id:
+# The message ID of the game roles menu (⛏️, 🏭, ⚔️, 🚀).
+# Can share the exact same message ID as stream_picker_message_id if combined.
+# Set automatically by !postrolesmenu or manually via !setrolepicker <id>.
+# Format: Discord Snowflake ID (integer)
+#game_picker_message_id = 0
+
+
+# ------------------------------------------------------------------------------
+# EXTERNAL PLATFORM APIS (STREAM MONITORING)
+# ------------------------------------------------------------------------------
+
+# twitch_client_id:
+# Client ID obtained from the Twitch Developer Console (dev.twitch.tv) under your app.
+# Format: String
+#twitch_client_id = 
+
+# twitch_client_secret:
+# Client Secret obtained alongside the Client ID. The bot uses both to request an OAuth2
+# app access token via client_credentials flow.
+# Format: String
+#twitch_client_secret = 
+
+# youtube_api_key:
+# Google Cloud Console API key with the "YouTube Data API v3" library enabled.
+# Used to poll channel live status via search endpoint.
+# Format: String
+#youtube_api_key = 
+
+
+# ------------------------------------------------------------------------------
+# GEMINI AI & AUTO-CHAT ENGINE
+# ------------------------------------------------------------------------------
+
+# gemini_api_key:
+# API key generated via Google AI Studio (aistudio.google.com).
+# Format: String (usually starts with AIzaSy...)
+#gemini_api_key = 
+
+# gemini_model:
+# The Gemini model identifier used for generating dialogue and extracting memory facts.
+# Recommended: gemini-3.8-flash (fallback: gemini-2.0-flash)
+#gemini_model = gemini-3.8-flash
+
+# ai_chat_channel_id:
+# The designated Discord channel where the bot listens and responds to EVERY user message
+# automatically, without requiring an @mention or command prefix.
+# If 0, the bot will only answer when directly @mentioned anywhere it has permissions.
+# Format: Discord Snowflake ID (integer)
+#ai_chat_channel_id = 1565865266523668703
+
+
+# ==============================================================================
+# STREAM VIEWER ROLES
+# Maps picker emoji to designated Discord role IDs.
+# If an ID is set to 0, the bot falls back to searching by case-insensitive name.
+# ==============================================================================
+[stream_roles]
+
+# role_twitch:
+# Role ID assigned when reacting with 🟣. Fallback name: "twitch viewer".
+#role_twitch = 0
+
+# role_kick:
+# Role ID assigned when reacting with 🟢. Fallback name: "kick viewer".
+#role_kick = 0
+
+# role_youtube:
+# Role ID assigned when reacting with 🔴. Fallback name: "youtube viewer".
+#role_youtube = 0
+
+
+# ==============================================================================
+# GAME NOTIFICATION ROLES
+# Maps game picker emoji to designated Discord role IDs.
+# If an ID is set to 0, the bot falls back to searching by case-insensitive name.
+# ==============================================================================
+[game_roles]
+
+# role_minecraft:
+# Role ID assigned when reacting with ⛏️. Fallback name: "minecraft".
+#role_minecraft = 0
+
+# role_satisfactory:
+# Role ID assigned when reacting with 🏭. Fallback name: "satisfactory".
+#role_satisfactory = 0
+
+# role_beatsaber:
+# Role ID assigned when reacting with ⚔️. Fallback name: "beatsaber".
+#role_beatsaber = 0
+
+# role_star_rupture:
+# Role ID assigned when reacting with 🚀. Fallback name: "star-rupture".
+#role_star_rupture = 0
+
+
+# ==============================================================================
+# TRACKED STREAMER SECTIONS (REPEATABLE)
+# Each section must start with "streamer_" followed by a unique lowercase label.
+# These can also be created dynamically in Discord with:
+# !addstreamer <name> <platform> <handle> [@role]
+# ==============================================================================
+
+#[streamer_example]
+# display_name: The clean name displayed in stream announcement embeds and text alerts.
+#display_name = ExampleStreamer
+
+# twitch_username: The Twitch login name / channel handle (e.g. kookie). Leave blank if none.
+#twitch_username = 
+
+# kick_slug: The Kick channel slug (e.g. kookie). Leave blank if none.
+#kick_slug = 
+
+# youtube_channel_id: The YouTube Channel ID (starts with UC...). Leave blank if none.
+#youtube_channel_id = 
+
+# twitch_role_id: Specific Discord role ID pinged when this creator goes live on Twitch.
+#twitch_role_id = 
+
+# kick_role_id: Specific Discord role ID pinged when this creator goes live on Kick.
+#kick_role_id = 
+
+# youtube_role_id: Specific Discord role ID pinged when this creator goes live on YouTube.
+#youtube_role_id =
