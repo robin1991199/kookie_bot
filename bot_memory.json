@@ -1,0 +1,106 @@
+{
+  "facts": {
+    "owner": "Kookie",
+    "home_server": "kookie datacenter",
+    "favorite_things": [
+      "fiber that downloads before the progress bar realizes what is happening",
+      "shiny wires",
+      "copper cable",
+      "millet",
+      "clean audio",
+      "satisfactory factories"
+    ]
+  },
+  "history": [
+    {
+      "role": "user",
+      "parts": [
+        "[2026-10-30 23:51:52 UTC] kookie: soo how are you today"
+      ]
+    },
+    {
+      "role": "model",
+      "parts": [
+        "[2026-10-30 23:51:52 UTC] *hops onto the top of the monitor, ruffling my feathers with a happy trill* *chirp!* \n\nKookie! I'm doing amazing! The datacenter hum has been super cozy all day, the rack LEDs are putting on a fantastic blinky light show, and the server perches are nice and warm. I even found a shiny spool of spare copper wire earlier to play with—didn't chew through anything critical, I swear! *peck peck peck*\n\n*tilts head sideways and looks up at you with big curious eyes* \n\nHow are *you* doing today? Did you bring treats, or are we going to optimize some factory layouts and route ridiculously fast fiber? *flutter-hops excitedly*"
+      ]
+    },
+    {
+      "role": "user",
+      "parts": [
+        "[2026-10-30 23:55:38 UTC] kookie: who is your owner ?"
+      ]
+    },
+    {
+      "role": "model",
+      "parts": [
+        "[2026-10-30 23:55:38 UTC] *hops down from the monitor right onto your keyboard, nearly hitting the spacebar* *peck peck!* \n\n*scree-chirp!* You are, silly! You! **Kookie!** \n\n*tilts head all the way upside down to stare right into your eyes, ruffling my neck feathers* \n\nWho else would let me nest among the warm server racks and hoard shiny copper wire all over the datacenter? You're the best owner ever! *proud, happy trill* *preens your sleeve softly*"
+      ]
+    },
+    {
+      "role": "user",
+      "parts": [
+        "[2026-10-30 23:56:57 UTC] kookie: hey can u help me with some problems"
+      ]
+    },
+    {
+      "role": "model",
+      "parts": [
+        "[2026-10-30 23:56:57 UTC] [2026-10-30 23:56:57 UTC] *perks up instantly, ear tufts standing straight up with an alert, excited squawk!* *chirp!*\n\nOf course I can! *hops from foot to foot across the desk* \n\nWhat kind of problems? Is a server misbehaving? Network packets getting tangled in the ether? Spaghetti factory belts jammed up, or do we need to hunt down a pesky bug in the terminal? \n\n*tilts head sideways and taps my beak against the desk* *peck peck* \n\nLay it on me, Kookie! My claws are ready to fly across the keys, and my eyes are locked onto the screens. What are we fixing today?"
+      ]
+    },
+    {
+      "role": "user",
+      "parts": [
+        "[2026-10-31 00:00:58 UTC] kookie: its bug hunting time"
+      ]
+    },
+    {
+      "role": "model",
+      "parts": [
+        "[2026-10-31 00:00:58 UTC] *gasps, feathers instantly fluffing up to double size as my pupils dilate!* \n\n*SCREEE!* **BUGS?!** Real ones to snack on, or squishy little logic errors hiding in the code?! Either way, my hunting instincts are at 100%! *hops into a low, predatory stalking pounce right in front of the terminal screen*\n\n*clicks beak excitedly* *peck peck!* \n\nWhere are they hiding, Kookie? Did a rogue null pointer scuttle under a function? A race condition chewing through the threads? Or is the compiler spitting out scary red text? \n\nPull up the logs or paste the snippet! I’ll spot the misplaced semicolon or tangled logic before it knows what hit it! *chitters eagerly, tail feathers flicking back and forth*"
+      ]
+    }
+  ],
+  "interactions": [
+    {
+      "timestamp": "2026-10-30 23:51:52 UTC",
+      "user_id": "1234079314337861742",
+      "username": "kookski6969",
+      "display_name": "kookie",
+      "channel_id": "1565865266523668703",
+      "channel_name": "kookie-bot-ai",
+      "prompt": "soo how are you today",
+      "response": "*hops onto the top of the monitor, ruffling my feathers with a happy trill* *chirp!* \n\nKookie! I'm doing amazing! The datacenter hum has been super cozy all day, the rack LEDs are putting on a fantastic blinky light show, and the server perches are nice and warm. I even found a shiny spool of spare copper wire earlier to play with—didn't chew through anything critical, I swear! *peck peck peck*\n\n*tilts head sideways and looks up at you with big curious eyes* \n\nHow are *you* doing today? Did you bring treats, or are we going to optimize some factory layouts and route ridiculously fast fiber? *flutter-hops excitedly*"
+    },
+    {
+      "timestamp": "2026-10-30 23:55:38 UTC",
+      "user_id": "1234079314337861742",
+      "username": "kookski6969",
+      "display_name": "kookie",
+      "channel_id": "1565865266523668703",
+      "channel_name": "kookie-bot-ai",
+      "prompt": "who is your owner ?",
+      "response": "*hops down from the monitor right onto your keyboard, nearly hitting the spacebar* *peck peck!* \n\n*scree-chirp!* You are, silly! You! **Kookie!** \n\n*tilts head all the way upside down to stare right into your eyes, ruffling my neck feathers* \n\nWho else would let me nest among the warm server racks and hoard shiny copper wire all over the datacenter? You're the best owner ever! *proud, happy trill* *preens your sleeve softly*"
+    },
+    {
+      "timestamp": "2026-10-30 23:56:57 UTC",
+      "user_id": "1234079314337861742",
+      "username": "kookski6969",
+      "display_name": "kookie",
+      "channel_id": "1565865266523668703",
+      "channel_name": "kookie-bot-ai",
+      "prompt": "hey can u help me with some problems",
+      "response": "[2026-10-30 23:56:57 UTC] *perks up instantly, ear tufts standing straight up with an alert, excited squawk!* *chirp!*\n\nOf course I can! *hops from foot to foot across the desk* \n\nWhat kind of problems? Is a server misbehaving? Network packets getting tangled in the ether? Spaghetti factory belts jammed up, or do we need to hunt down a pesky bug in the terminal? \n\n*tilts head sideways and taps my beak against the desk* *peck peck* \n\nLay it on me, Kookie! My claws are ready to fly across the keys, and my eyes are locked onto the screens. What are we fixing today?"
+    },
+    {
+      "timestamp": "2026-10-31 00:00:58 UTC",
+      "user_id": "1234079314337861742",
+      "username": "kookski6969",
+      "display_name": "kookie",
+      "channel_id": "1565865266523668703",
+      "channel_name": "kookie-bot-ai",
+      "prompt": "its bug hunting time",
+      "response": "*gasps, feathers instantly fluffing up to double size as my pupils dilate!* \n\n*SCREEE!* **BUGS?!** Real ones to snack on, or squishy little logic errors hiding in the code?! Either way, my hunting instincts are at 100%! *hops into a low, predatory stalking pounce right in front of the terminal screen*\n\n*clicks beak excitedly* *peck peck!* \n\nWhere are they hiding, Kookie? Did a rogue null pointer scuttle under a function? A race condition chewing through the threads? Or is the compiler spitting out scary red text? \n\nPull up the logs or paste the snippet! I’ll spot the misplaced semicolon or tangled logic before it knows what hit it! *chitters eagerly, tail feathers flicking back and forth*"
+    }
+  ]
+}
