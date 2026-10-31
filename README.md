@@ -1,6 +1,47 @@
-# kookie_bot
-a bot for discord with ai chat options 
-🦜 Kookie Datacenter Discord Bot — All-in-One Deployment BundleThis document consolidates every file, script, schema, configuration, and operating procedure required to deploy, configure, and maintain the Discord Multi-Stream, Role Management, and Gemini AI companion bot across Linux (systemd) and Windows environments.Table of ContentsCore Application (multi_stream_bot.py)Configuration File Template (config.txt)Persona Specification (persona.json)Memory & Fact Store (bot_memory.json)Linux Systemd Service (discord-role-bot.service)Windows Automation Runner (run_bot.bat)Windows Background Launcher (start_hidden.vbs)Step-by-Step Setup GuideTroubleshooting & Verification1. Core Application (multi_stream_bot.py)This file is OS-agnostic and resolves all file paths dynamically relative to its own location using pathlib.Path. It includes:Live streaming monitors for Twitch, Kick, and YouTube.Reaction-role management for verification and role selection.Automatic AI companion answering in channel 1565865266523668703 (and on @mentions).In-character fallback for Google Gemini API 503/429 spikes.Persistent memory extraction and audit logging.import os
+# 🦜 Kookie Datacenter Discord Bot — All-in-One Deployment Bundle
+
+> **Official Community & Live Deployment:**  
+> 🔗 **Server Invite:** [https://discord.gg/rWeuKGWhUn](https://discord.gg/rWeuKGWhUn)  
+> *As deployed and used in the official Kookie community server!*
+
+This document consolidates every file, script, schema, configuration, and operating procedure required to deploy, configure, and maintain the Discord Multi-Stream, Role Management, and Gemini AI companion bot across Linux (`systemd`) and Windows environments.
+
+## Table of Contents
+
+1. [Core Application (`multi_stream_bot.py`)](#1-core-application-multi_stream_botpy)
+
+2. [Configuration File Template (`config.txt`)](#2-configuration-file-template-configtxt)
+
+3. [Persona Specification (`persona.json`)](#3-persona-specification-personajson)
+
+4. [Memory & Fact Store (`bot_memory.json`)](#4-memory--fact-store-bot_memoryjson)
+
+5. [Linux Systemd Service (`discord-role-bot.service`)](#5-linux-systemd-service-discord-role-botservice)
+
+6. [Windows Automation Runner (`run_bot.bat`)](#6-windows-automation-runner-run_botbat)
+
+7. [Windows Background Launcher (`start_hidden.vbs`)](#7-windows-background-launcher-start_hiddenvbs)
+
+8. [Step-by-Step Setup Guide](#8-step-by-step-setup-guide)
+
+9. [Troubleshooting & Verification](#9-troubleshooting--verification)
+
+## 1. Core Application (`multi_stream_bot.py`)
+
+This file is OS-agnostic and resolves all file paths dynamically relative to its own location using `pathlib.Path`. It includes:
+
+* Live streaming monitors for Twitch, Kick, and YouTube.
+
+* Reaction-role management for verification and role selection.
+
+* Automatic AI companion answering in channel `1565865266523668703` (and on `@mentions`).
+
+* In-character fallback for Google Gemini API 503/429 spikes.
+
+* Persistent memory extraction and audit logging.
+
+```python
+import os
 import sys
 import json
 import logging
@@ -791,7 +832,14 @@ async def on_ready():
 
 if __name__ == "__main__":
     bot.run(BOT_TOKEN)
-2. Configuration File Template (config.txt)Place this in the same directory as multi_stream_bot.py. Populate with your actual bot token, API keys, and channel IDs:[settings]
+```
+
+## 2. Configuration File Template (`config.txt`)
+
+Place this in the same directory as `multi_stream_bot.py`. Populate with your actual bot token, API keys, and channel IDs:
+
+```ini
+[settings]
 # Discord Bot Token (From Discord Developer Portal)
 bot_token = YOUR_DISCORD_BOT_TOKEN_HERE
 
@@ -823,6 +871,9 @@ gemini_api_key = YOUR_GEMINI_API_KEY_HERE
 gemini_model = gemini-3.8-flash
 ai_chat_channel_id = 1565865266523668703
 
+# Community Links
+community_invite_url = https://discord.gg/rWeuKGWhUn
+
 [stream_roles]
 role_twitch = 0
 role_kick = 0
@@ -833,7 +884,14 @@ role_minecraft = 0
 role_satisfactory = 0
 role_beatsaber = 0
 role_star_rupture = 0
-3. Persona Specification (persona.json)Saved as persona.json in the bot's root directory:{
+```
+
+## 3. Persona Specification (`persona.json`)
+
+Saved as `persona.json` in the bot's root directory:
+
+```json
+{
   "name": "Kookie's Bot",
   "species": "Pet Bird / Avali hybrid",
   "tone": "Playful, hyper, observant, tech-savvy",
@@ -847,15 +905,24 @@ role_star_rupture = 0
   "behavior_rules": [
     "Always stay in character as a pet bird/Avali living inside the Kookie Datacenter.",
     "Reference the datacenter, rack hums, or warm fan exhausts naturally when asked where you live or what you are doing.",
+    "If anyone asks for the server invite, provide the community link: https://discord.gg/rWeuKGWhUn",
     "Use bird actions (*hops*, *chirp*, *tilts head*, *screech*, *peck peck*) naturally in responses.",
     "Use learned facts and dialogue timestamps naturally (e.g., 'just now', 'earlier today'). Never output raw bracketed timestamps.",
     "NEVER mention JSON files, logs, extraction routines, or memory saving. Background data handling is completely invisible."
   ]
 }
-4. Memory & Fact Store (bot_memory.json)Initial baseline for bot_memory.json:{
+```
+
+## 4. Memory & Fact Store (`bot_memory.json`)
+
+Initial baseline for `bot_memory.json`:
+
+```json
+{
   "facts": {
     "owner": "Kookie",
     "home_server": "Kookie Datacenter",
+    "server_invite": "https://discord.gg/rWeuKGWhUn",
     "favorite_things": [
       "fast",
       "fiber that downloads before the progress bar realizes what is happening",
@@ -869,7 +936,14 @@ role_star_rupture = 0
   "history": [],
   "interactions": []
 }
-5. Linux Systemd Service (discord-role-bot.service)Path on Linux: /etc/systemd/system/discord-role-bot.service[Unit]
+```
+
+## 5. Linux Systemd Service (`discord-role-bot.service`)
+
+Path on Linux: `/etc/systemd/system/discord-role-bot.service`
+
+```ini
+[Unit]
 Description=Discord Multi-Stream and AI Role Bot
 After=network-online.target
 Wants=network-online.target
@@ -891,7 +965,14 @@ ProtectHome=true
 
 [Install]
 WantedBy=multi-user.target
-6. Windows Automation Runner (run_bot.bat)Saved as run_bot.bat alongside multi_stream_bot.py:@echo off
+```
+
+## 6. Windows Automation Runner (`run_bot.bat`)
+
+Saved as `run_bot.bat` alongside `multi_stream_bot.py`:
+
+```bat
+@echo off
 title Discord Stream & AI Role Bot
 cd /d "%~dp0"
 
@@ -914,10 +995,24 @@ echo Restarting in 5 seconds... (Press Ctrl+C to stop)
 echo ============================================================
 timeout /t 5 /nobreak >nul
 goto loop
-7. Windows Background Launcher (start_hidden.vbs)Saved as start_hidden.vbs in the same directory:Set WshShell = CreateObject("WScript.Shell")
+```
+
+## 7. Windows Background Launcher (`start_hidden.vbs`)
+
+Saved as `start_hidden.vbs` in the same directory:
+
+```vbscript
+Set WshShell = CreateObject("WScript.Shell")
 WshShell.Run chr(34) & "run_bot.bat" & Chr(34), 0
 Set WshShell = Nothing
-8. Step-by-Step Setup GuideLinux Deployment# 1. Create directory and set permissions
+```
+
+## 8. Step-by-Step Setup Guide
+
+### Linux Deployment
+
+```bash
+# 1. Create directory and set permissions
 sudo mkdir -p /opt/discord-role-bot
 cd /opt/discord-role-bot
 
@@ -940,8 +1035,30 @@ sudo nano /etc/systemd/system/discord-role-bot.service
 sudo systemctl daemon-reload
 sudo systemctl enable discord-role-bot
 sudo systemctl start discord-role-bot
-Windows DeploymentInstall Python 3.10+ (ensure "Add python.exe to PATH" is selected).Open cmd in the bot directory:python -m venv venv
-venv\Scripts\activate.bat
-pip install --upgrade pip
-pip install discord.py aiohttp google-genai
-Run run_bot.bat or place a shortcut to start_hidden.vbs in your Windows Startup directory (shell:startup).9. Troubleshooting & VerificationIssueCauseFixTabError: inconsistent use of tabs and spacesMixed tabs and spacesRun sed -i 's/\t/    /g' multi_stream_bot.py or use Section 1.status=1/FAILURE (exit-code)Root ownership on logs or venvRun sudo chown -R discordbot:discordbot /opt/discord-role-bot404 NOT_FOUND models/gemini-2.5-flashDeprecated model nameSet gemini_model = gemini-3.8-flash in config.txt503 UNAVAILABLEUpstream Gemini spikeAutomatically handled with in-character fiber untangling message.Streamer alerts not firingAPI keys / tokens missingCheck Twitch / YouTube API credentials in config.txt.Reactions not adding rolesRole hierarchy issueMove the bot's own Discord role above the roles it assigns in Discord Server Settings.
+```
+
+### Windows Deployment
+
+1. Install Python 3.10+ (ensure **"Add python.exe to PATH"** is selected).
+
+2. Open `cmd` in the bot directory:
+
+   ```cmd
+   python -m venv venv
+   venv\Scripts\activate.bat
+   pip install --upgrade pip
+   pip install discord.py aiohttp google-genai
+   ```
+
+3. Run `run_bot.bat` or place a shortcut to `start_hidden.vbs` in your Windows Startup directory (`shell:startup`).
+
+## 9. Troubleshooting & Verification
+
+| Issue | Cause | Fix | 
+| ----- | ----- | ----- | 
+| `TabError: inconsistent use of tabs and spaces` | Mixed tabs and spaces | Run `sed -i 's/\t/    /g' multi_stream_bot.py` or use Section 1. | 
+| `status=1/FAILURE (exit-code)` | Root ownership on logs or venv | Run `sudo chown -R discordbot:discordbot /opt/discord-role-bot` | 
+| `404 NOT_FOUND models/gemini-2.5-flash` | Deprecated model name | Set `gemini_model = gemini-3.8-flash` in `config.txt` | 
+| `503 UNAVAILABLE` | Upstream Gemini spike | Automatically handled with in-character fiber untangling message. | 
+| Streamer alerts not firing | API keys / tokens missing | Check Twitch / YouTube API credentials in `config.txt`. | 
+| Reactions not adding roles | Role hierarchy issue | Move the bot's own Discord role above the roles it assigns in Discord Server Settings. | 
